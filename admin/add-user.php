@@ -1,5 +1,33 @@
 <?php include "header.php"; ?>
+<?php
+   if(isset($_POST['save'])){
+    include "config.php";
+    //mysqli_real_escape_string  it just filter the string making it safe from special characters
+    
+    $fname = mysqli_real_escape_string($conn , $_POST['fname']);
+    $lname = mysqli_real_escape_string($conn , $_POST['lname']);
+    $user = mysqli_real_escape_string($conn , $_POST['user']);
+    $password = mysqli_real_escape_string($conn , md5($_POST['password']));  //md5 encrypt it
+    $role = mysqli_real_escape_string($conn , $_POST['role']);
 
+    $sql = "SELECT username FROM user WHERE username = '{$user}'";
+    $result = mysqli_query($conn , $sql) or die("Query failed");
+
+    if(mysqli_num_rows($result) > 0){
+        echo "<p style='color:red;text-align:center;margin: 10px 0;'>Username already exists<p>";
+    }
+    else{
+        $sql1 = "INSERT INTO user (first_name,last_name,username,password,role) VALUES ('{$fname}','{$lname}','{$user}','{$password}','{$role}')";
+        if(mysqli_query($conn,$sql1)){
+            header("Location: http://localhost/news-site/admin/users.php");
+        }
+        else{
+            echo "<p style='color:red;text-align:center;margin: 10px 0;'>Query failed1<p>";
+        }
+    }
+
+   } 
+?>
 
   <div id="admin-content">
       <div class="container">
