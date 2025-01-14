@@ -22,5 +22,10 @@
 <?php include "footer.php"; ?>
 <?php
 include "config.php";
- 
+if(isset($_POST['save'])){
+    $cat = $_POST['cat'];
+    $sql = "INSERT INTO category (category_name) VALUES ('{$cat}')";
+    $result = mysqli_query($conn, $sql) or die("Query Failed.");
+    header("Location: http://localhost/news-site/admin/category.php");
+} 
 ?>
