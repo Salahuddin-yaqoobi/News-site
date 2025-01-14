@@ -20,3 +20,7 @@
       </div>
   </div>
 <?php include "footer.php"; ?>
+<?php
+include "config.php";
+ 
+?>
