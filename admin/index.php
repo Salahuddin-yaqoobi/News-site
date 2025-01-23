@@ -1,3 +1,12 @@
+<?php
+
+    session_start();
+    if(isset($_SESSION['username'])){
+        header("Location: http://localhost/news-site/admin/post.php");
+    }
+//in this way i directly does not move to the login page
+
+?>
 <!doctype html>
 <html>
    <head>
