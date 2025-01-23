@@ -1,3 +1,12 @@
+<?php
+
+session_start();
+if(!isset($_SESSION['username'])){
+    header("Location: http://localhost/news-site/admin/");
+}
+//in this way i directly does not log in through the url
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
